@@ -1,0 +1,56 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "claim",
+      "label": "Free education should be universal",
+      "span": "Free higher education should be provided to all citizens.",
+      "paraphrase": "Every person should have access to free university education.",
+      "confidence": 0.92
+    },
+    {
+      "id": "n2",
+      "type": "premise",
+      "label": "Education reduces inequality",
+      "span": "Studies show that access to education significantly reduces economic inequality.",
+      "paraphrase": "Education is proven to decrease wealth gaps in society.",
+      "confidence": 0.88
+    },
+    {
+      "id": "n3",
+      "type": "objection",
+      "label": "Cost is prohibitive",
+      "span": "However, critics argue that free education would cost taxpayers billions.",
+      "paraphrase": "Opponents claim the financial burden on taxpayers would be too high.",
+      "confidence": 0.85
+    },
+    {
+      "id": "n4",
+      "type": "reply",
+      "label": "Investment pays off long-term",
+      "span": "Yet this investment yields returns through increased tax revenues from educated workers.",
+      "paraphrase": "The initial cost is offset by higher tax income from graduates.",
+      "confidence": 0.83
+    },
+    {
+      "id": "n5",
+      "type": "conclusion",
+      "label": "Therefore, implement free education",
+      "span": "Therefore, the benefits of free education outweigh the costs, and it should be implemented.",
+      "paraphrase": "In conclusion, we should establish universal free education despite the expense.",
+      "confidence": 0.90
+    }
+  ],
+  "edges": [
+    {"source": "n2", "target": "n1", "relation": "support", "confidence": 0.91},
+    {"source": "n3", "target": "n1", "relation": "attack", "confidence": 0.86},
+    {"source": "n4", "target": "n3", "relation": "attack", "confidence": 0.84},
+    {"source": "n1", "target": "n5", "relation": "support", "confidence": 0.89}
+  ],
+  "meta": {
+    "source": "test_all_types_fixture",
+    "created_at": "2026-01-29T14:57:00Z",
+    "model_version": "test-v1.0",
+    "description": "Test fixture with all 5 node types (claim, premise, objection, reply, conclusion) for legend verification"
+  }
+}

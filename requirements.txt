@@ -1,0 +1,24 @@
+# Argument Graph Builder - Mockup Dependencies
+# Python 3.9+ required
+
+streamlit>=1.28.0
+pyvis>=0.3.2
+
+# LLM Integration
+langchain-openai>=0.1.0
+langchain-core>=0.2.0
+pydantic>=2.0.0
+tiktoken>=0.5.0
+
+# Graph Construction
+rapidfuzz>=3.0.0
+
+# NLP - Preprocessing
+spacy>=3.7.0
+
+# PDF text extraction
+pymupdf>=1.23.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0

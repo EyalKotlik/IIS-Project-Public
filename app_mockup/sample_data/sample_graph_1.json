@@ -1,0 +1,109 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "claim",
+      "label": "Death penalty should be abolished",
+      "span": "The death penalty should be abolished in all civilized nations.",
+      "paraphrase": "Capital punishment ought to be eliminated across all developed societies due to fundamental ethical and practical concerns.",
+      "confidence": 0.92
+    },
+    {
+      "id": "n2",
+      "type": "premise",
+      "label": "Irreversibility of execution",
+      "span": "if the state executes an innocent person, there is no way to undo this grave error",
+      "paraphrase": "Execution is permanent and cannot be reversed if the convicted person is later proven innocent.",
+      "confidence": 0.88
+    },
+    {
+      "id": "n3",
+      "type": "premise",
+      "label": "Innocence rate on death row",
+      "span": "Studies have shown that approximately 4% of death row inmates are likely innocent.",
+      "paraphrase": "Research indicates that roughly 1 in 25 death row prisoners may be wrongfully convicted.",
+      "confidence": 0.85
+    },
+    {
+      "id": "n4",
+      "type": "objection",
+      "label": "Deterrent effect claim",
+      "span": "Proponents of capital punishment argue that it serves as a deterrent to violent crime.",
+      "paraphrase": "Supporters claim that the threat of execution discourages people from committing serious crimes.",
+      "confidence": 0.79
+    },
+    {
+      "id": "n5",
+      "type": "reply",
+      "label": "No deterrent evidence",
+      "span": "comprehensive research across multiple states and countries has consistently failed to demonstrate any significant deterrent effect",
+      "paraphrase": "Extensive studies have found no meaningful evidence that capital punishment reduces violent crime rates.",
+      "confidence": 0.86
+    },
+    {
+      "id": "n6",
+      "type": "premise",
+      "label": "Lower murder rates without death penalty",
+      "span": "States without the death penalty actually have lower murder rates on average.",
+      "paraphrase": "Jurisdictions that have abolished capital punishment tend to experience fewer homicides per capita.",
+      "confidence": 0.82
+    },
+    {
+      "id": "n7",
+      "type": "premise",
+      "label": "Racial disparities",
+      "span": "Black defendants are significantly more likely to receive death sentences than white defendants for comparable crimes.",
+      "paraphrase": "The application of the death penalty shows racial bias, with Black individuals facing higher execution rates.",
+      "confidence": 0.87
+    },
+    {
+      "id": "n8",
+      "type": "premise",
+      "label": "Economic disparities",
+      "span": "Those who cannot afford quality legal representation are disproportionately sentenced to death.",
+      "paraphrase": "Defendants lacking financial resources for good lawyers are more likely to receive death sentences.",
+      "confidence": 0.84
+    },
+    {
+      "id": "n9",
+      "type": "objection",
+      "label": "Closure for victims",
+      "span": "Some argue that the death penalty provides closure to victims' families.",
+      "paraphrase": "Proponents suggest that executing perpetrators helps surviving family members find emotional resolution.",
+      "confidence": 0.71
+    },
+    {
+      "id": "n10",
+      "type": "reply",
+      "label": "Closure doesn't justify risks",
+      "span": "this emotional argument has merit, it cannot justify a system that risks executing innocent people",
+      "paraphrase": "While the desire for closure is understandable, it does not outweigh the moral cost of potentially killing innocent people.",
+      "confidence": 0.78
+    },
+    {
+      "id": "n11",
+      "type": "premise",
+      "label": "Life imprisonment alternative",
+      "span": "Alternative punishments like life imprisonment without parole can protect society while avoiding these moral hazards.",
+      "paraphrase": "Permanent incarceration achieves the goal of public safety without the ethical problems of execution.",
+      "confidence": 0.83
+    }
+  ],
+  "edges": [
+    {"source": "n2", "target": "n1", "relation": "support", "confidence": 0.91},
+    {"source": "n3", "target": "n2", "relation": "support", "confidence": 0.87},
+    {"source": "n4", "target": "n1", "relation": "attack", "confidence": 0.75},
+    {"source": "n5", "target": "n4", "relation": "attack", "confidence": 0.88},
+    {"source": "n6", "target": "n5", "relation": "support", "confidence": 0.84},
+    {"source": "n7", "target": "n1", "relation": "support", "confidence": 0.86},
+    {"source": "n8", "target": "n1", "relation": "support", "confidence": 0.85},
+    {"source": "n9", "target": "n1", "relation": "attack", "confidence": 0.68},
+    {"source": "n10", "target": "n9", "relation": "attack", "confidence": 0.80},
+    {"source": "n11", "target": "n1", "relation": "support", "confidence": 0.82}
+  ],
+  "meta": {
+    "source": "sample_text_1",
+    "created_at": "2025-01-15T10:30:00Z",
+    "model_version": "mock-v1.0"
+  }
+}

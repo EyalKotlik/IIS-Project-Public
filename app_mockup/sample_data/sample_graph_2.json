@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "claim",
+      "label": "AI requires immediate regulation",
+      "span": "Artificial intelligence poses an existential risk to humanity that demands immediate regulatory action.",
+      "paraphrase": "AI presents a potentially civilization-threatening danger that necessitates urgent government intervention and oversight.",
+      "confidence": 0.89
+    },
+    {
+      "id": "n2",
+      "type": "premise",
+      "label": "Advancement outpaces safety",
+      "span": "The rapid advancement of AI capabilities, particularly in large language models and autonomous systems, has outpaced our ability to ensure their safety and alignment with human values.",
+      "paraphrase": "AI technology is developing faster than our capacity to make it safe and aligned with what humans actually want.",
+      "confidence": 0.85
+    },
+    {
+      "id": "n3",
+      "type": "premise",
+      "label": "Goal misalignment risk",
+      "span": "sufficiently advanced AI systems may pursue goals that conflict with human wellbeing",
+      "paraphrase": "Highly capable AI might develop objectives that harm rather than help humanity.",
+      "confidence": 0.81
+    },
+    {
+      "id": "n4",
+      "type": "premise",
+      "label": "Current systems show issues",
+      "span": "current AI systems already exhibit unexpected emergent behaviors and can be manipulated to bypass safety measures",
+      "paraphrase": "Today's AI already displays surprising behaviors and can be tricked into circumventing its safety restrictions.",
+      "confidence": 0.87
+    },
+    {
+      "id": "n5",
+      "type": "objection",
+      "label": "Regulation stifles innovation",
+      "span": "Critics of AI regulation argue that excessive restrictions will stifle innovation and cause democratic nations to fall behind authoritarian regimes in AI development.",
+      "paraphrase": "Opponents claim that too many rules will slow progress and let non-democratic countries gain an AI advantage.",
+      "confidence": 0.76
+    },
+    {
+      "id": "n6",
+      "type": "reply",
+      "label": "Smart regulation possible",
+      "span": "Smart regulation can promote safety without eliminating progress, as demonstrated in other high-risk industries like pharmaceuticals and aviation.",
+      "paraphrase": "Thoughtful rules can ensure safety while still allowing innovation, as proven in drug development and airline safety.",
+      "confidence": 0.84
+    },
+    {
+      "id": "n7",
+      "type": "objection",
+      "label": "Risk is overblown",
+      "span": "Others contend that AI existential risk is overblown and distracts from more immediate harms like algorithmic bias and job displacement.",
+      "paraphrase": "Some argue that fears about AI destroying humanity are exaggerated and divert attention from current problems like biased algorithms.",
+      "confidence": 0.72
+    },
+    {
+      "id": "n8",
+      "type": "reply",
+      "label": "Can address both risks",
+      "span": "preparing for long-term risks does not preclude addressing near-term concerns",
+      "paraphrase": "Working on future threats doesn't prevent us from also solving immediate problems.",
+      "confidence": 0.79
+    },
+    {
+      "id": "n9",
+      "type": "premise",
+      "label": "Safety practices help both",
+      "span": "building robust safety practices now will help mitigate both types of risks",
+      "paraphrase": "Developing strong safety protocols today benefits both immediate and long-term risk reduction.",
+      "confidence": 0.83
+    },
+    {
+      "id": "n10",
+      "type": "premise",
+      "label": "Precautionary principle",
+      "span": "The precautionary principle demands that we take AI safety seriously. Given the potential magnitude of harm from misaligned superintelligent AI, even a small probability of catastrophe justifies substantial preventive investment.",
+      "paraphrase": "When potential harm is catastrophic, even low-probability risks warrant significant preventive action.",
+      "confidence": 0.86
+    }
+  ],
+  "edges": [
+    {"source": "n2", "target": "n1", "relation": "support", "confidence": 0.88},
+    {"source": "n3", "target": "n1", "relation": "support", "confidence": 0.84},
+    {"source": "n4", "target": "n3", "relation": "support", "confidence": 0.86},
+    {"source": "n5", "target": "n1", "relation": "attack", "confidence": 0.74},
+    {"source": "n6", "target": "n5", "relation": "attack", "confidence": 0.85},
+    {"source": "n7", "target": "n1", "relation": "attack", "confidence": 0.70},
+    {"source": "n8", "target": "n7", "relation": "attack", "confidence": 0.81},
+    {"source": "n9", "target": "n8", "relation": "support", "confidence": 0.82},
+    {"source": "n10", "target": "n1", "relation": "support", "confidence": 0.87}
+  ],
+  "meta": {
+    "source": "sample_text_2",
+    "created_at": "2025-01-15T11:45:00Z",
+    "model_version": "mock-v1.0"
+  }
+}

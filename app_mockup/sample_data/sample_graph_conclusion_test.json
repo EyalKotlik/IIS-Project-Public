@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "claim",
+      "label": "Death penalty should be abolished",
+      "span": "The death penalty should be abolished in all civilized nations.",
+      "paraphrase": "Capital punishment ought to be eliminated across all developed societies.",
+      "confidence": 0.92
+    },
+    {
+      "id": "n2",
+      "type": "premise",
+      "label": "Irreversibility of execution",
+      "span": "if the state executes an innocent person, there is no way to undo this grave error",
+      "paraphrase": "Execution is permanent and cannot be reversed if the convicted person is later proven innocent.",
+      "confidence": 0.88
+    },
+    {
+      "id": "n3",
+      "type": "premise",
+      "label": "Racial disparities",
+      "span": "Black defendants are significantly more likely to receive death sentences than white defendants for comparable crimes.",
+      "paraphrase": "The application of the death penalty shows racial bias, with Black individuals facing higher execution rates.",
+      "confidence": 0.87
+    },
+    {
+      "id": "n4",
+      "type": "conclusion",
+      "label": "Therefore, abolish capital punishment",
+      "span": "Therefore, the death penalty must be abolished to uphold justice and human rights.",
+      "paraphrase": "In conclusion, we must eliminate capital punishment to ensure fairness and protect human dignity.",
+      "confidence": 0.90
+    }
+  ],
+  "edges": [
+    {"source": "n2", "target": "n1", "relation": "support", "confidence": 0.91},
+    {"source": "n3", "target": "n1", "relation": "support", "confidence": 0.86},
+    {"source": "n1", "target": "n4", "relation": "support", "confidence": 0.89}
+  ],
+  "meta": {
+    "source": "test_conclusion_fixture",
+    "created_at": "2025-01-27T07:57:00Z",
+    "model_version": "test-v1.0",
+    "description": "Test fixture with conclusion node for UI verification"
+  }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vis Network Select Component</title>
+    <script src="vis-network.min.js"></script>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        #network {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        #network:hover {
+            border-color: #8b5cf6;
+        }
+    </style>
+</head>
+<body>
+    <div id="network"></div>
+    <script>
+        // Make variables global for debugging and access
+        window.visNetwork = null;
+        window.nodesDataSet = null;
+        window.edgesDataSet = null;
+        window.currentSelected = new Set();
+        window.nodeOriginalColors = {};
+
+        // Streamlit component communication
+        function sendMessageToStreamlitClient(type, data) {
+            const outData = Object.assign({
+                isStreamlitMessage: true,
+                type: type,
+            }, data);
+            window.parent.postMessage(outData, "*");
+        }
+
+        function init() {
+            sendMessageToStreamlitClient("streamlit:componentReady", {apiVersion: 1});
+        }
+
+        function setFrameHeight(height) {
+            sendMessageToStreamlitClient("streamlit:setFrameHeight", {height: height});
+        }
+
+        function setComponentValue(value) {
+            sendMessageToStreamlitClient("streamlit:setComponentValue", {value: value});
+        }
+
+        // Listen for render events from Streamlit
+        window.addEventListener("message", onDataFromPython);
+
+        function onDataFromPython(event) {
+            if (event.data.type !== "streamlit:render") return;
+            
+            const args = event.data.args;
+            const height = args.height || 550;
+            
+            // Set frame height
+            setFrameHeight(height);
+            
+            // Store original colors
+            window.nodeOriginalColors = {};
+            if (args.nodes) {
+                args.nodes.forEach(node => {
+                    window.nodeOriginalColors[node.id] = node.originalColor || node.color;
+                });
+            }
+            
+            // Initialize selected nodes from Python
+            window.currentSelected = new Set(args.selected || []);
+            
+            // Setup the container
+            const container = document.getElementById('network');
+            container.style.height = height + 'px';
+            
+            // Create DataSets
+            window.nodesDataSet = new vis.DataSet(args.nodes || []);
+            window.edgesDataSet = new vis.DataSet(args.edges || []);
+            
+            // Create the network
+            window.visNetwork = new vis.Network(
+                container, 
+                { nodes: window.nodesDataSet, edges: window.edgesDataSet }, 
+                args.options || {}
+            );
+            
+            // Update colors to reflect selection
+            window.updateNodeColors();
+            
+            // Handle click events
+            window.visNetwork.on('click', function(params) {
+                if (params.nodes.length > 0) {
+                    const clickedNodeId = params.nodes[0];
+                    // Safely check for Ctrl/Cmd key with null checks
+                    const srcEvent = params.event && params.event.srcEvent;
+                    const ctrlKey = srcEvent ? (srcEvent.ctrlKey || srcEvent.metaKey) : false;
+                    
+                    if (ctrlKey) {
+                        // Ctrl/Cmd-click: toggle in multi-selection
+                        if (window.currentSelected.has(clickedNodeId)) {
+                            window.currentSelected.delete(clickedNodeId);
+                        } else {
+                            window.currentSelected.add(clickedNodeId);
+                        }
+                    } else {
+                        // Regular click: single selection
+                        window.currentSelected.clear();
+                        window.currentSelected.add(clickedNodeId);
+                    }
+                    
+                    window.updateNodeColors();
+                    window.sendSelection(clickedNodeId);
+                } else {
+                    // Clicked empty canvas - clear selection
+                    window.currentSelected.clear();
+                    window.updateNodeColors();
+                    window.sendSelection(null);
+                }
+            });
+            
+            // Send initial value to Streamlit
+            setComponentValue({
+                selected: Array.from(window.currentSelected),
+                last_clicked: null
+            });
+        }
+        
+        window.updateNodeColors = function() {
+            if (!window.nodesDataSet) return;
+            
+            window.nodesDataSet.forEach(function(node) {
+                const isSelected = window.currentSelected.has(node.id);
+                const originalColor = window.nodeOriginalColors[node.id] || node.color;
+                
+                window.nodesDataSet.update({
+                    id: node.id,
+                    color: isSelected ? '#8b5cf6' : originalColor,
+                    borderWidth: isSelected ? 4 : 2
+                });
+            });
+        };
+        
+        window.sendSelection = function(lastClicked) {
+            setComponentValue({
+                selected: Array.from(window.currentSelected),
+                last_clicked: lastClicked
+            });
+        };
+
+        // Initialize the component
+        init();
+    </script>
+</body>
+</html>
